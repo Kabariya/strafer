@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyvwwwookthfp"]
 
 [ext_resource type="PackedScene" uid="uid://c4p48qkr206em" path="res://scenes/maps/map.tscn" id="1_ibd2x"]
-[ext_resource type="PackedScene" uid="uid://ujmn2sd3d8bp" path="res://scenes/player/player.tscn" id="2_pnn2l"]
+[ext_resource type="PackedScene" uid="uid://c6c1orwh1bmhe" path="res://scenes/player/player.tscn" id="2_pnn2l"]
 
 [node name="Main" type="Node"]
 

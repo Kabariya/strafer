@@ -1,25 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://ujmn2sd3d8bp"]
+[gd_scene load_steps=9 format=3 uid="uid://c6c1orwh1bmhe"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_j6bmu"]
 [ext_resource type="Script" path="res://scenes/player/head.gd" id="2_1cb5p"]
-[ext_resource type="AudioStream" uid="uid://cloka37c0wfbe" path="res://sounds/huh.ogg" id="3_pefjp"]
+[ext_resource type="AudioStream" uid="uid://cqt5fyw05wqqb" path="res://sounds/player/slide.ogg" id="3_dkxpj"]
+[ext_resource type="AudioStream" uid="uid://d11gwpf5gyw" path="res://sounds/player/windrush.ogg" id="4_stli1"]
+[ext_resource type="AudioStream" uid="uid://cloka37c0wfbe" path="res://sounds/player/huh.ogg" id="4_t8umk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cxt83"]
+height = 1.0
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_j4ixb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wnugk"]
+height = 1.0
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 2
 script = ExtResource("1_j6bmu")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_cxt83")
 
+[node name="Ground" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_j4ixb")
+
+[node name="Ceiling" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_wnugk")
+target_position = Vector3(0, 0.5, 0)
+max_results = 1
+debug_shape_custom_color = Color(1, 0, 1, 1)
+
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_1cb5p")
 
 [node name="Camera" type="Camera3D" parent="Head"]
+doppler_tracking = 2
 current = true
 fov = 85.0
 
-[node name="Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_pefjp")
-volume_db = -20.0
+[node name="Slide" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dkxpj")
+volume_db = -80.0
+autoplay = true
+bus = &"Sound"
+
+[node name="Rush" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_stli1")
+autoplay = true
+bus = &"Sound"
+
+[node name="Huh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_t8umk")
+volume_db = -12.0
+bus = &"Sound"
+
+[node name="Feet" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+max_polyphony = 3
+bus = &"Sound"
