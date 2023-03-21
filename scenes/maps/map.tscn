@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://c4p48qkr206em"]
 
-[ext_resource type="Material" uid="uid://15ows8gmu4yh" path="res://scenes/maps/uv_grid.material" id="1_evyki"]
+[ext_resource type="Material" uid="uid://ccjg225hpqujx" path="res://scenes/maps/uv_grid.material" id="1_evyki"]
 [ext_resource type="AudioStream" uid="uid://bdplwvxukhvne" path="res://sounds/drones/creeps.ogg" id="2_dxvvc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cqdjb"]

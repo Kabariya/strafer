@@ -1,10 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6c1orwh1bmhe"]
+[gd_scene load_steps=27 format=3 uid="uid://c6c1orwh1bmhe"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_j6bmu"]
-[ext_resource type="Script" path="res://scenes/player/head.gd" id="2_1cb5p"]
 [ext_resource type="AudioStream" uid="uid://cqt5fyw05wqqb" path="res://sounds/player/slide.ogg" id="3_dkxpj"]
 [ext_resource type="AudioStream" uid="uid://d11gwpf5gyw" path="res://sounds/player/windrush.ogg" id="4_stli1"]
 [ext_resource type="AudioStream" uid="uid://cloka37c0wfbe" path="res://sounds/player/huh.ogg" id="4_t8umk"]
+[ext_resource type="AudioStream" uid="uid://cktea4drjn3to" path="res://sounds/player/steps/concrete_01.ogg" id="6_oqxht"]
+[ext_resource type="AudioStream" uid="uid://cdjxcn78ke3re" path="res://sounds/player/steps/concrete_02.ogg" id="7_jqgav"]
+[ext_resource type="AudioStream" uid="uid://bpmcdbfdwqi4a" path="res://sounds/player/steps/concrete_03.ogg" id="8_0acms"]
+[ext_resource type="AudioStream" uid="uid://dl6b7fak42g2o" path="res://sounds/player/steps/concrete_04.ogg" id="9_llseh"]
+[ext_resource type="AudioStream" uid="uid://cbiu3oic33kjc" path="res://sounds/player/steps/concrete_05.ogg" id="10_gmex4"]
+[ext_resource type="AudioStream" uid="uid://djdsp2x3mn4md" path="res://sounds/player/steps/concrete_06.ogg" id="11_pm0o5"]
+[ext_resource type="AudioStream" uid="uid://b6jxa7md60g6p" path="res://sounds/player/steps/jump_concrete_01.ogg" id="12_eva56"]
+[ext_resource type="AudioStream" uid="uid://ca0ea0pkhw774" path="res://sounds/player/steps/jump_concrete_02.ogg" id="13_c0px1"]
+[ext_resource type="AudioStream" uid="uid://wjjexvsvist3" path="res://sounds/player/steps/jump_concrete_03.ogg" id="14_in7h8"]
+[ext_resource type="AudioStream" uid="uid://dyi5havqtnijh" path="res://sounds/player/steps/land_concrete_01.ogg" id="15_604l8"]
+[ext_resource type="AudioStream" uid="uid://cw7lgui5b4b53" path="res://sounds/player/steps/land_concrete_02.ogg" id="16_jgpgs"]
+[ext_resource type="AudioStream" uid="uid://4nupidfwro7s" path="res://sounds/player/steps/land_concrete_03.ogg" id="17_1tc67"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cxt83"]
 height = 1.0
@@ -13,6 +24,104 @@ height = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wnugk"]
 height = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t1tak"]
+streams_count = 3
+random_pitch = 1.25
+stream_0/stream = ExtResource("12_eva56")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("13_c0px1")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_in7h8")
+stream_2/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_xuv4i"]
+resource_name = "jump"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/Feet")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_t1tak")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tx0p5"]
+streams_count = 3
+random_pitch = 1.25
+stream_0/stream = ExtResource("15_604l8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("16_jgpgs")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("17_1tc67")
+stream_2/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_dkggf"]
+resource_name = "land"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/Feet")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_tx0p5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ohe5i"]
+streams_count = 6
+random_pitch = 1.25
+stream_0/stream = ExtResource("6_oqxht")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_jqgav")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_0acms")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("9_llseh")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("10_gmex4")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("11_pm0o5")
+stream_5/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_oijpi"]
+resource_name = "step"
+length = 0.2
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sounds/Feet")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_ohe5i")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b07i0"]
+_data = {
+"jump": SubResource("Animation_xuv4i"),
+"land": SubResource("Animation_dkggf"),
+"step": SubResource("Animation_oijpi")
+}
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
@@ -35,30 +144,60 @@ debug_shape_custom_color = Color(1, 0, 1, 1)
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("2_1cb5p")
 
 [node name="Camera" type="Camera3D" parent="Head"]
 doppler_tracking = 2
 current = true
 fov = 85.0
 
-[node name="Slide" type="AudioStreamPlayer" parent="."]
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Slide" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_dkxpj")
 volume_db = -80.0
 autoplay = true
 bus = &"Sound"
 
-[node name="Rush" type="AudioStreamPlayer" parent="."]
+[node name="Rush" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_stli1")
 autoplay = true
 bus = &"Sound"
 
-[node name="Huh" type="AudioStreamPlayer" parent="."]
+[node name="Huh" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("4_t8umk")
 volume_db = -12.0
 bus = &"Sound"
 
-[node name="Feet" type="AudioStreamPlayer" parent="."]
+[node name="Feet" type="AudioStreamPlayer" parent="Sounds"]
 volume_db = -8.0
 max_polyphony = 3
 bus = &"Sound"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b07i0")
+}
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Log" type="Label" parent="HUD"]
+layout_mode = 1
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 440.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+text = "Current state"
+uppercase = true
+metadata/_edit_lock_ = true
